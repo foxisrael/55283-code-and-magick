@@ -32,23 +32,38 @@
                                                               width="130">Сделано в HTML Academy</a>в 2017 году</p>
 </footer>
 <script>
-  var fireballSize = 32;
-  var getFireballSpeed = function (left){
-    if (left){
-      left = true;
-      return = 5;
-    }
-    else {
-      reture = 2;
-    }
+  //Размер файрбола
+  var fireballSize = 22;
+
+  //Скорость фаербола в завимости от направления ветра
+  function getFireballSpeed(left) {
+  if (left) {
+  return 5;
   }
 
+  return 2;
+  }
 
+  //Скорость мага
+  var wizardSpeed = 3;
 
+  //Размер мага
+  var wizardWidth = 70;
+  var getWizardHeight = function (){
+    getWizardHeight = 1.337 * wizardWidth;
+    return getWizardHeight;
+  }
 
+  //Расположении мага на экране
+  function getWizardX(width) {
+    return width/2;
+  }
 
+  function getWizardY(height) {
+    return height/3;
+  }
 </script>
-<script src="js/game.js" type="application/javascript"></script>
 
+<script src="js/game.js" type="application/javascript"></script>
 </body>
 </html>
