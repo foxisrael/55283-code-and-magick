@@ -37,11 +37,7 @@
 
   //Скорость фаербола в завимости от направления ветра
   function getFireballSpeed(left) {
-  if (left) {
-  return 5;
-  }
-
-  return 2;
+     return left ? 5 : 2;
   }
 
   //Скорость мага
@@ -49,9 +45,8 @@
 
   //Размер мага
   var wizardWidth = 70;
-  var getWizardHeight = function (){
-    getWizardHeight = 1.337 * wizardWidth;
-    return getWizardHeight;
+  function getWizardHeight() {
+    return 1.337 * wizardWidth;
   }
 
   //Расположении мага на экране
@@ -60,7 +55,7 @@
   }
 
   function getWizardY(height) {
-    return height/3;
+    return height * 2 / 3;
   }
 </script>
 
