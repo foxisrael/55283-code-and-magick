@@ -1,6 +1,7 @@
 'use strict';
-//Рисую канвас
+
 window.renderStatistics = function(ctx, names, times) {
+  //Рисую канвас
   //Тень
   ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
   ctx.fillRect(110, 20, 420, 270);
@@ -16,27 +17,50 @@ window.renderStatistics = function(ctx, names, times) {
   ctx.fillText('Ура вы победили!', 120, 40);
   ctx.fillText('Список результатов:', 120, 60);
 
+  //Вычисляем самое большое значение
   var max = times[0];
   for (var i = 1; i < times.length; i++) {
     var time = times[i];
     if (time > max) {
       max = time;
     }
+  };
+
+  //Вычисляем смещение по X
+  function getIndentX(histoX, columnIndent, i) {
+    return histoX + columnIndent * i;
   }
 
-  var histoHeight = 150;
-  var histoX = 120;
+  //Вычисляем смещение по Y
+  function getIndentY(histoY, histoHeight, height) {
+    return histoY + histoHeight - height;
+  }
+
+  //Объявляем параметры гистаграммы
+  var histoHeight = 150; //высота гистограммы
+  var histoX = 120; //начальная точка Х
+  var histoY = 100; //начальная точка У
   var step = histoHeight / max;
-  var columnIndent = 100;
+  var columnIndent = 90;
+
+  //идем по массивам
   for (var i = 0; i < times.length; i++) {
     var name = names[i];
     var time = times[i];
-    var height = step * time;
+    var height = step * time
 
-    ctx.fillStyle = 'rgba(255, 0, 0, 1)';
-    ctx.fillRect(histoX + columnIndent * i, 100, 40, height);
-    ctx.fillText(name, histoX + columnIndent * i, histoHeight - 60);
-    ctx.fillText(time.toFixed(0), histoX + columnIndent * i, 100 + histoHeight + 20);
+    //вычисляем смещение по X и Y
+    var indentX = getIndentX(histoX, columnIndent, i);
+    var indentY = getIndentY(histoY, histoHeight, height);
+
+    //рисуем графическую ячейку
+    ctx.fillRect(indentX, indentY, 40, height);
+
+    //рисуем имя игрока
+    ctx.fillText(name, histoX + columnIndent * i, indentY - 10);
+
+    //рисуем время игрока
+    ctx.fillText(time.toFixed(0), indentX, histoHeight + 120);
   }
 };
 
