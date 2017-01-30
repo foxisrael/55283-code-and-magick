@@ -13,10 +13,10 @@ setupClose.addEventListener('click', function() {
   setup.classList.add('invisible');
 });
 
-//Валидация формы
-var nameField = document.querySelector('.setup-user-name');
-nameField.required = true;
-nameField.maxlength = 50;
+// //Валидация формы
+// var nameField = document.querySelector('.setup-user-name');
+// nameField.required = true;
+// nameField.maxlength = 50;
 
 //Переменные одежки и файерболла мага
 var wizard = document.querySelector('#wizard');
@@ -34,7 +34,7 @@ var wizardCoatColors = [
   'rgb(0, 0, 0)'
 ];
 
-wizard.addEventListener('click', function() {
+wizardCoat.addEventListener('click', function() {
   var colorNumber = Math.floor(Math.random() * wizardCoatColors.length);
   wizardCoat.style.fill = wizardCoatColors[colorNumber];
 });
@@ -48,7 +48,7 @@ var wizardEyesColors = [
   'green'
 ];
 
-wizard.addEventListener('click', function() {
+wizardEyes.addEventListener('click', function() {
   var colorNumber = Math.floor(Math.random() * wizardEyesColors.length);
   wizardEyes.style.fill = wizardCoatColors[colorNumber];
 });
@@ -62,7 +62,7 @@ var wizardFireBallColors = [
   '#e6e848'
 ];
 
-wizard.addEventListener('click', function() {
+wizardFireBall.addEventListener('click', function() {
   var colorNumber = Math.floor(Math.random() * wizardFireBallColors.length);
   wizardFireBall.style.background = wizardFireBallColors[colorNumber];
 });
