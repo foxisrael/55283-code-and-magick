@@ -63,6 +63,6 @@ var wizardFireBallColors = [
 ];
 
 wizard.addEventListener('click', function() {
-  var colorNumber = Math.floor(Math.random() * wizardEyesColors.length);
+  var colorNumber = Math.floor(Math.random() * wizardFireBallColors.length);
   wizardFireBall.style.background = wizardFireBallColors[colorNumber];
 });
