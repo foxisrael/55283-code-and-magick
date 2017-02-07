@@ -48,6 +48,7 @@ function showSetup() {
   setup.classList.remove('invisible');
   document.addEventListener('keydown', isEscEvent);
   togglePressed();
+  toggleHidden();
 }
 
 // Прячем setup
@@ -55,12 +56,19 @@ function hideSetup() {
   setup.classList.add('invisible');
   document.removeEventListener('keydown', isEscEvent);
   togglePressed();
+  toggleHidden();
 }
 
 // Переключение атрибута aria-pressed
 function togglePressed() {
   var pressed = (setupOpenIcon.getAttribute('aria-pressed') === 'true');
   setupOpenIcon.setAttribute('aria-pressed', !pressed);
+}
+
+// Переключение атрибута aria-hidden
+function toggleHidden() {
+  var pressed = (setup.getAttribute('aria-hidden') === 'true');
+  setup.setAttribute('aria-hidden', !pressed);
 }
 
 // Открытие SETUP по клику
@@ -109,3 +117,7 @@ wizardFireBall.addEventListener('click', function() {
   var colorNumber = Math.floor(Math.random() * wizardFireBallColors.length);
   wizardFireBall.style.background = wizardFireBallColors[colorNumber];
 });
+
+// Требования
+nameField.required = true;
+nameField.maxLength = 50;
