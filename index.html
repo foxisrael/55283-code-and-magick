@@ -26,17 +26,17 @@
   <div class="demo"></div>
 
   <div class="setup-open">
-    <img src="./img/user-1.jpg" class="setup-open-icon">
+    <img src="./img/user-1.jpg" class="setup-open-icon" tabindex="1" role="button" aria-pressed="false" aria-label="Открыть">
   </div>
 </header>
 
-<div class="overlay setup invisible">
+<div class="overlay setup invisible" role="dialog" aria-hidden="true">
   <form class="setup-wizard-form">
-    <span class="setup-close">&times;</span>
+    <span class="setup-close" role="button" tabindex="2" aria-label="Закрыть">&times;</span>
 
     <div class="setup-user">
       <img class="setup-user-pic" src="./img/user-1.jpg" />
-      <input type="text" class="setup-user-name" value="Синий Пендальф" maxlength="50" required />
+      <input type="text" class="setup-user-name" value="Синий Пендальф" />
     </div>
 
     <div class="setup-wizard-appearance">
@@ -98,14 +98,16 @@
       <div class="setup-artifacts-cell"></div>
     </div>
 
-    <button class="button setup-submit">Сохранить</button>
+    <button class="button setup-submit" role="button" tabindex="3" aria-label="Сохранить">Сохранить</button>
   </form>
 </div>
 
 <footer>
-  <p><a href="http://htmlacademy.ru" class="footer-link"><img src="img/htmlacademy-logo.png" alt="HTML Academy"
+  <p><a href="http://htmlacademy.ru" class="footer-link" tabindex="2"><img src="img/htmlacademy-logo.png" alt="HTML Academy"
                                                               width="130">Сделано в HTML Academy</a>в 2017 году</p>
 </footer>
+
+<script src="js/stat.js" type="application/javascript"></script>
 <script src="js/setup.js" type="application/javascript"></script>
 <script src="js/game.js" type="application/javascript"></script>
 

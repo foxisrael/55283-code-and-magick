@@ -1,68 +1,123 @@
 'use strict';
-//Переменные открытия окна
+
 var setup = document.querySelector('.setup');
 var setupOpen = document.querySelector('.setup-open');
-var setupClose = document.querySelector('.setup-close');
-
-//Открытия и закрытия окна
-setupOpen.addEventListener('click', function() {
-  setup.classList.remove('invisible');
-});
-
-setupClose.addEventListener('click', function() {
-  setup.classList.add('invisible');
-});
-
-// //Валидация формы
-// var nameField = document.querySelector('.setup-user-name');
-// nameField.required = true;
-// nameField.maxlength = 50;
-
-//Переменные одежки и файерболла мага
-var wizard = document.querySelector('#wizard');
-var wizardCoat = wizard.querySelector('#wizard-coat');
-var wizardEyes = wizard.querySelector('#wizard-eyes');
-var wizardFireBall = document.querySelector('.setup-fireball-wrap');
-
-//Смена цвета плаща мага
-var wizardCoatColors = [
+var setupOpenIcon = setupOpen.querySelector('.setup-open-icon');
+var setupClose = setup.querySelector('.setup-close');
+var nameField = setup.querySelector('.setup-user-name');
+var wizardCoat = setup.querySelector('#wizard-coat');
+var wizardEyes = setup.querySelector('#wizard-eyes');
+var fireballWrap = setup.querySelector('.setup-fireball-wrap');
+var setupSubmit = setup.querySelector('.setup-submit');
+var coatColors = [
   'rgb(101, 137, 164)',
   'rgb(241, 43, 107)',
   'rgb(146, 100, 161)',
   'rgb(56, 159, 117)',
   'rgb(215, 210, 55)',
-  'rgb(0, 0, 0)'
-];
-
-wizardCoat.addEventListener('click', function() {
-  var colorNumber = Math.floor(Math.random() * wizardCoatColors.length);
-  wizardCoat.style.fill = wizardCoatColors[colorNumber];
-});
-
-//Смена цвета глаз мага
-var wizardEyesColors = [
+  'rgb(0, 0, 0)'];
+var eyesColors = [
   'black',
   'red',
   'blue',
   'yellow',
-  'green'
-];
+  'green'];
+var fireballColors = [
+  '#ee4830',
+  '#30a8ee',
+  '#5ce6c0',
+  '#e848d5',
+  '#e6e848'];
+var ENTER_KEY_CODE = 13;
+var ESC_KEY_CODE = 27;
+
+// Проверка на нажатие ENTER
+function isEnterEvent(evt) {
+  return evt.keyCode === ENTER_KEY_CODE;
+}
+
+// Проверка на нажатие ESC, закрытие окна
+function isEscEvent(evt) {
+  if (evt.keyCode === ESC_KEY_CODE) {
+    hideSetup();
+  }
+}
+
+// Показываем setup
+function showSetup() {
+  setup.classList.remove('invisible');
+  document.addEventListener('keydown', isEscEvent);
+  togglePressed();
+  toggleHidden();
+}
+
+// Прячем setup
+function hideSetup() {
+  setup.classList.add('invisible');
+  document.removeEventListener('keydown', isEscEvent);
+  togglePressed();
+  toggleHidden();
+}
+
+// Переключение атрибута aria-pressed
+function togglePressed() {
+  var pressed = (setupOpenIcon.getAttribute('aria-pressed') === 'true');
+  setupOpenIcon.setAttribute('aria-pressed', !pressed);
+}
+
+// Переключение атрибута aria-hidden
+function toggleHidden() {
+  var pressed = (setup.getAttribute('aria-hidden') === 'true');
+  setup.setAttribute('aria-hidden', !pressed);
+}
+
+// Открытие SETUP по клику
+setupOpen.addEventListener('click', function (evt) {
+  showSetup();
+});
+
+// Открытие SETUP по нажатию Enter
+setupOpen.addEventListener('keydown', function (evt) {
+  if (isEnterEvent(evt)) {
+    showSetup();
+  }
+});
+
+// Прячем SETUP по клику
+setupClose.addEventListener('click', function () {
+  hideSetup();
+});
+
+// Прячем SETUP по нажатию Enter
+setupClose.addEventListener('keydown', function (evt) {
+  if (isEnterEvent(evt)) {
+    hideSetup();
+  }
+});
+
+// Прячем SETUP, если фокус на кнопке СОХРАНИТЬ
+setupSubmit.addEventListener('keydown', function (evt) {
+  if (isEnterEvent(evt)) {
+    hideSetup();
+  }
+});
+
+// Смена цветов
+wizardCoat.addEventListener('click', function() {
+  var colorNumber = Math.floor(Math.random() * wizardCoatColors.length);
+  wizardCoat.style.fill = wizardCoatColors[colorNumber];
+});
 
 wizardEyes.addEventListener('click', function() {
   var colorNumber = Math.floor(Math.random() * wizardEyesColors.length);
   wizardEyes.style.fill = wizardCoatColors[colorNumber];
 });
 
-//Смена цвета файерболла мага
-var wizardFireBallColors = [
-  '#ee4830',
-  '#30a8ee',
-  '#5ce6c0',
-  '#e848d5',
-  '#e6e848'
-];
-
 wizardFireBall.addEventListener('click', function() {
   var colorNumber = Math.floor(Math.random() * wizardFireBallColors.length);
   wizardFireBall.style.background = wizardFireBallColors[colorNumber];
 });
+
+// Требования
+nameField.required = true;
+nameField.maxLength = 50;
