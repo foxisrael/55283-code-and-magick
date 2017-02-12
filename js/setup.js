@@ -103,20 +103,9 @@ setupSubmit.addEventListener('keydown', function (evt) {
 });
 
 // Смена цветов
-wizardCoat.addEventListener('click', function() {
-  var colorNumber = Math.floor(Math.random() * wizardCoatColors.length);
-  wizardCoat.style.fill = wizardCoatColors[colorNumber];
-});
-
-wizardEyes.addEventListener('click', function() {
-  var colorNumber = Math.floor(Math.random() * wizardEyesColors.length);
-  wizardEyes.style.fill = wizardCoatColors[colorNumber];
-});
-
-wizardFireBall.addEventListener('click', function() {
-  var colorNumber = Math.floor(Math.random() * wizardFireBallColors.length);
-  wizardFireBall.style.background = wizardFireBallColors[colorNumber];
-});
+window.colorizeElement(wizardCoat, coatColors, 'fill');
+window.colorizeElement(wizardEyes, eyesColors, 'fill');
+window.colorizeElement(fireballWrap, fireballColors, 'background');
 
 // Требования
 nameField.required = true;
